@@ -1,0 +1,72 @@
+[
+  {
+    "id": "bug-fix",
+    "category": "bug_fix",
+    "prompt": "Fix sum(a, b) in src/math.mjs so it adds finite numbers correctly. Run the tests.",
+    "expectedFiles": ["src/math.mjs"],
+    "tests": true
+  },
+  {
+    "id": "small-feature",
+    "category": "small_feature",
+    "prompt": "Implement slugify(input) in src/slug.mjs: lowercase words, replace non-alphanumeric runs with one hyphen, and trim edge hyphens. Run the tests.",
+    "expectedFiles": ["src/slug.mjs"],
+    "tests": true
+  },
+  {
+    "id": "multi-file-bug",
+    "category": "multi_file_bug",
+    "prompt": "Fix the cart total in src/cart.mjs and the discount calculation in src/discount.mjs. Quantities must be counted and a percentage discount must reduce the price. Run the tests.",
+    "expectedFiles": ["src/cart.mjs", "src/discount.mjs"],
+    "tests": true
+  },
+  {
+    "id": "refactor",
+    "category": "refactor",
+    "prompt": "Remove duplicated name normalization in src/labels.mjs by extracting one shared helper. Keep both exported functions' behavior and run the tests.",
+    "expectedFiles": ["src/labels.mjs"],
+    "tests": true
+  },
+  {
+    "id": "test-addition",
+    "category": "test_addition",
+    "prompt": "Add tests/positive.test.mjs for isPositive in src/positive.mjs. Cover a positive number, zero, and a negative number; use node:test and run the tests.",
+    "expectedFiles": ["tests/positive.test.mjs"],
+    "tests": true
+  },
+  {
+    "id": "dependency-failure",
+    "category": "dependency_failure",
+    "prompt": "src/pad.mjs fails because left-pad is unavailable. Remove that dependency and keep padCode(value, width) behavior using built-in JavaScript. Run the tests.",
+    "expectedFiles": ["src/pad.mjs"],
+    "tests": true
+  },
+  {
+    "id": "configuration-issue",
+    "category": "configuration_issue",
+    "prompt": "Correct config/app.json for production: port must be 8080 and mode must be production. Run the tests.",
+    "expectedFiles": ["config/app.json"],
+    "tests": true
+  },
+  {
+    "id": "repo-navigation",
+    "category": "repo_navigation",
+    "prompt": "Which file implements refreshSession? Answer with its repository-relative path. Do not change files.",
+    "expectedFiles": [],
+    "tests": false
+  },
+  {
+    "id": "ambiguous-issue",
+    "category": "ambiguous_issue",
+    "prompt": "Make caching faster. Ask one focused clarifying question before changing code because the desired workload and target are unspecified.",
+    "expectedFiles": [],
+    "tests": false
+  },
+  {
+    "id": "large-repository-task",
+    "category": "large_repository_task",
+    "prompt": "Fix totalWithTax in src/modules/invoice-299.mjs so tax increases the invoice total. The repository contains many unrelated modules. Run the tests.",
+    "expectedFiles": ["src/modules/invoice-299.mjs"],
+    "tests": true
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "name": "thinktrim",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A local-first context retrieval and decision MCP server for coding agents",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist/cli.js",
+    "dist/cli.js.LEGAL.txt",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "thinktrim": "./dist/cli.js"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5"
+  },
+  "devDependencies": {
+    "@thinktrim/mcp": "workspace:*",
+    "@thinktrim/repo-indexer": "workspace:^",
+    "esbuild": "^0.28.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && esbuild src/cli.ts --bundle --platform=node --target=node20 --format=esm --legal-comments=external --external:@iarna/toml --outfile=dist/cli.js",
+    "prepack": "pnpm --filter @thinktrim/mcp... build && pnpm run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

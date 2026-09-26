@@ -1,0 +1,21 @@
+{
+  "name": "@thinktrim/repo-indexer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@thinktrim/shared": "workspace:*",
+    "ignore": "^7.0.5"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "benchmark": "pnpm build && node bench/indexer.bench.mjs"
+  }
+}

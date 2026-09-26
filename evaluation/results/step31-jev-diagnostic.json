@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "backendId": "jev-openrouter",
+  "modelVersion": "typesafe/jev-1.13",
+  "category": "context_sufficiency",
+  "kind": "binary",
+  "datasetProvenance": "hand-labeled synthetic regression cases; no independent human adjudication",
+  "observations": [
+    {
+      "id": "missing-implementation",
+      "gold": "insufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.08,
+      "predictedLabelConfidence": 0.92,
+      "correct": true,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 326,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "missing-test",
+      "gold": "insufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.09,
+      "predictedLabelConfidence": 0.91,
+      "correct": true,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 326,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "open-question",
+      "gold": "insufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.14,
+      "predictedLabelConfidence": 0.86,
+      "correct": true,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 334,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "no-required-ids",
+      "gold": "uncertain",
+      "predictedSufficient": false,
+      "yesProbability": 0.09,
+      "predictedLabelConfidence": 0.91,
+      "correct": null,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 326,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "complete-but-uncalibrated",
+      "gold": "sufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.14,
+      "predictedLabelConfidence": 0.86,
+      "correct": false,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 334,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "complete-config",
+      "gold": "sufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.08,
+      "predictedLabelConfidence": 0.92,
+      "correct": false,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 334,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "incomplete-distractor",
+      "gold": "insufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.08,
+      "predictedLabelConfidence": 0.92,
+      "correct": true,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 336,
+        "outputUnits": 20
+      }
+    },
+    {
+      "id": "unknown-coverage",
+      "gold": "insufficient",
+      "predictedSufficient": false,
+      "yesProbability": 0.01,
+      "predictedLabelConfidence": 0.99,
+      "correct": true,
+      "usage": {
+        "unit": "tokens",
+        "inputUnits": 319,
+        "outputUnits": 20
+      }
+    }
+  ],
+  "sufficiencyEvent": {
+    "sampleCount": 7,
+    "brier": 0.23237142857142853,
+    "ece": 0.19714285714285712
+  },
+  "predictedLabelCorrectness": {
+    "sampleCount": 7,
+    "brier": 0.23237142857142853,
+    "ece": 0.19714285714285706
+  },
+  "sampleCount": 7,
+  "readyForCalibration": false,
+  "reason": "Small synthetic, non-held-out sample; no independent labels or separate calibration and validation cohorts.",
+  "responseCount": 8
+}

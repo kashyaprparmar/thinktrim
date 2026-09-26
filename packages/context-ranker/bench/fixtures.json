@@ -1,0 +1,265 @@
+{
+  "cases": [
+    {
+      "name": "misleading filenames",
+      "task": "refresh JWT expiration handling",
+      "currentEvidence": ["session refresh logic"],
+      "candidates": [
+        {
+          "path": "src/auth/jwt.ts",
+          "symbols": [{ "name": "parseJwt", "kind": "function" }],
+          "imports": ["jose"],
+          "retrievalScore": 0.9,
+          "gold": 1
+        },
+        {
+          "path": "src/session/refresh.ts",
+          "symbols": [{ "name": "refreshTokenExpiration", "kind": "function" }],
+          "imports": ["jose", "./session"],
+          "retrievalScore": 0.7,
+          "gold": 3
+        },
+        {
+          "path": "src/auth/login.ts",
+          "symbols": [{ "name": "login", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.4,
+          "gold": 0
+        },
+        { "path": "docs/jwt.md", "symbols": [], "imports": [], "retrievalScore": 0.8, "gold": 0 }
+      ]
+    },
+    {
+      "name": "duplicate implementations",
+      "task": "update current payment retry handler",
+      "changedFiles": ["src/payments/retry.ts"],
+      "candidates": [
+        {
+          "path": "src/payments/legacy/retry.ts",
+          "symbols": [{ "name": "retryPayment", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.95,
+          "gold": 0
+        },
+        {
+          "path": "src/payments/retry.ts",
+          "symbols": [{ "name": "retryPayment", "kind": "function" }],
+          "imports": ["./gateway"],
+          "retrievalScore": 0.75,
+          "gold": 3
+        },
+        {
+          "path": "src/payments/retry.test.ts",
+          "symbols": [{ "name": "retryPaymentTest", "kind": "function" }],
+          "imports": ["./retry"],
+          "retrievalScore": 0.6,
+          "gold": 1
+        },
+        {
+          "path": "src/payments/index.ts",
+          "symbols": [],
+          "imports": ["./retry"],
+          "retrievalScore": 0.7,
+          "gold": 0
+        }
+      ]
+    },
+    {
+      "name": "barrel exports",
+      "task": "fix user permission validation implementation",
+      "candidates": [
+        {
+          "path": "src/users/index.ts",
+          "symbols": [],
+          "imports": ["./permissions"],
+          "retrievalScore": 0.95,
+          "gold": 0
+        },
+        {
+          "path": "src/users/permissions.ts",
+          "symbols": [{ "name": "validateUserPermission", "kind": "function" }],
+          "imports": ["./roles"],
+          "retrievalScore": 0.8,
+          "gold": 3
+        },
+        {
+          "path": "src/users/types.ts",
+          "symbols": [{ "name": "UserPermission", "kind": "interface" }],
+          "imports": [],
+          "retrievalScore": 0.6,
+          "gold": 1
+        },
+        {
+          "path": "src/users/roles.ts",
+          "symbols": [{ "name": "UserRole", "kind": "type" }],
+          "imports": [],
+          "retrievalScore": 0.4,
+          "gold": 0
+        }
+      ]
+    },
+    {
+      "name": "test source ambiguity",
+      "task": "repair failing user auth tests",
+      "candidates": [
+        {
+          "path": "src/auth/login.test.ts",
+          "symbols": [{ "name": "loginRejectsExpiredSession", "kind": "function" }],
+          "imports": ["./login"],
+          "retrievalScore": 0.75,
+          "gold": 3
+        },
+        {
+          "path": "src/auth/login.ts",
+          "symbols": [{ "name": "login", "kind": "function" }],
+          "imports": ["./session"],
+          "retrievalScore": 0.9,
+          "gold": 2
+        },
+        {
+          "path": "src/auth/mocks.ts",
+          "symbols": [{ "name": "mockSession", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.4,
+          "gold": 1
+        },
+        {
+          "path": "src/auth/index.ts",
+          "symbols": [],
+          "imports": ["./login"],
+          "retrievalScore": 0.6,
+          "gold": 0
+        }
+      ]
+    },
+    {
+      "name": "interfaces",
+      "task": "update storage provider interface contract",
+      "candidates": [
+        {
+          "path": "src/storage/provider.ts",
+          "symbols": [{ "name": "StorageProvider", "kind": "interface" }],
+          "imports": [],
+          "retrievalScore": 0.75,
+          "gold": 3
+        },
+        {
+          "path": "src/storage/provider-impl.ts",
+          "symbols": [{ "name": "S3StorageProvider", "kind": "class" }],
+          "imports": ["./provider"],
+          "retrievalScore": 0.95,
+          "gold": 2
+        },
+        {
+          "path": "src/storage/index.ts",
+          "symbols": [],
+          "imports": ["./provider"],
+          "retrievalScore": 0.7,
+          "gold": 0
+        },
+        {
+          "path": "tests/storage-provider.test.ts",
+          "symbols": [{ "name": "providerContractTest", "kind": "function" }],
+          "imports": ["../src/storage/provider"],
+          "retrievalScore": 0.5,
+          "gold": 1
+        }
+      ]
+    },
+    {
+      "name": "monorepos",
+      "task": "fix sdk auth token refresh",
+      "candidates": [
+        {
+          "path": "packages/sdk/src/auth/refresh.ts",
+          "symbols": [{ "name": "refreshSdkToken", "kind": "function" }],
+          "imports": ["./token"],
+          "retrievalScore": 0.7,
+          "gold": 3
+        },
+        {
+          "path": "packages/app/src/auth/refresh.ts",
+          "symbols": [{ "name": "refreshAppToken", "kind": "function" }],
+          "imports": ["./token"],
+          "retrievalScore": 0.95,
+          "gold": 1
+        },
+        {
+          "path": "packages/sdk/src/auth/index.ts",
+          "symbols": [],
+          "imports": ["./refresh"],
+          "retrievalScore": 0.65,
+          "gold": 0
+        },
+        {
+          "path": "packages/app/src/auth/login.ts",
+          "symbols": [{ "name": "login", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.4,
+          "gold": 0
+        }
+      ]
+    },
+    {
+      "name": "generated files",
+      "task": "change protobuf user decoder",
+      "candidates": [
+        {
+          "path": "src/proto/user.ts",
+          "symbols": [{ "name": "decodeUser", "kind": "function" }],
+          "imports": ["./schema"],
+          "retrievalScore": 0.7,
+          "gold": 3
+        },
+        {
+          "path": "generated/proto/user.ts",
+          "symbols": [{ "name": "decodeUser", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.99,
+          "gold": 0
+        },
+        {
+          "path": "src/proto/user.test.ts",
+          "symbols": [{ "name": "decodeUserTest", "kind": "function" }],
+          "imports": ["./user"],
+          "retrievalScore": 0.5,
+          "gold": 1
+        },
+        {
+          "path": "src/proto/index.ts",
+          "symbols": [],
+          "imports": ["./user"],
+          "retrievalScore": 0.6,
+          "gold": 0
+        }
+      ]
+    },
+    {
+      "name": "ambiguous task",
+      "task": "fix bug",
+      "candidates": [
+        {
+          "path": "src/auth/session.ts",
+          "symbols": [{ "name": "loadSession", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.6,
+          "gold": 1
+        },
+        {
+          "path": "src/payments/retry.ts",
+          "symbols": [{ "name": "retryPayment", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.6,
+          "gold": 1
+        },
+        {
+          "path": "src/config/index.ts",
+          "symbols": [],
+          "imports": [],
+          "retrievalScore": 0.6,
+          "gold": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@thinktrim/providers",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./jev": {
+      "types": "./dist/jev-backend.d.ts",
+      "import": "./dist/jev-backend.js"
+    }
+  },
+  "dependencies": {
+    "@thinktrim/core": "workspace:*",
+    "@thinktrim/shared": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

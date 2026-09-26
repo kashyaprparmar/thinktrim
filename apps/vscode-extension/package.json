@@ -1,0 +1,113 @@
+{
+  "name": "@thinktrim/vscode-extension",
+  "displayName": "ThinkTrim",
+  "publisher": "thinktrim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Repository context ranking and decision diagnostics for VS Code",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/extension.cjs",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "files": [
+    "dist/**",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --platform=node --target=node18 --format=cjs --external:vscode --outfile=dist/extension.cjs --sourcemap",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "vscode:prepublish": "pnpm run build"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "thinktrim.status",
+        "title": "ThinkTrim: Status"
+      },
+      {
+        "command": "thinktrim.rankContext",
+        "title": "ThinkTrim: Rank Context"
+      },
+      {
+        "command": "thinktrim.analyzeSelection",
+        "title": "ThinkTrim: Analyze Selection"
+      },
+      {
+        "command": "thinktrim.openTrace",
+        "title": "ThinkTrim: Open Trace"
+      },
+      {
+        "command": "thinktrim.testBackend",
+        "title": "ThinkTrim: Test Backend"
+      },
+      {
+        "command": "thinktrim.configureBackend",
+        "title": "ThinkTrim: Configure Backend"
+      },
+      {
+        "command": "thinktrim.clearCache",
+        "title": "ThinkTrim: Clear Cache"
+      },
+      {
+        "command": "thinktrim.doctor",
+        "title": "ThinkTrim: Doctor"
+      }
+    ],
+    "configuration": {
+      "title": "ThinkTrim",
+      "properties": {
+        "thinktrim.backend": {
+          "type": "string",
+          "enum": [
+            "deterministic",
+            "laya-http",
+            "jev"
+          ],
+          "default": "deterministic",
+          "description": "Provider used by the explicit backend connection check. Repository ranking remains deterministic until backend confidence is calibrated."
+        },
+        "thinktrim.laya.endpoint": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000",
+          "description": "Loopback Laya HTTP endpoint."
+        },
+        "thinktrim.maxCandidates": {
+          "type": "number",
+          "default": 30,
+          "minimum": 1,
+          "maximum": 40,
+          "description": "Maximum repository candidates shown by ThinkTrim."
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "thinktrim.metrics",
+          "name": "ThinkTrim",
+          "contextualTitle": "ThinkTrim"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "@thinktrim/context-ranker": "workspace:*",
+    "@thinktrim/core": "workspace:*",
+    "@thinktrim/decision-policies": "workspace:*",
+    "@thinktrim/providers": "workspace:*",
+    "@thinktrim/repo-indexer": "workspace:*",
+    "@thinktrim/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.138.0",
+    "esbuild": "^0.28.2"
+  }
+}

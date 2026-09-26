@@ -1,0 +1,29 @@
+{
+  "name": "thinktrim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A decision coprocessor for AI coding agents",
+  "license": "MIT",
+  "packageManager": "pnpm@9.6.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0 && prettier --check \"**/*.{json,ts,mjs,yml,yaml}\"",
+    "typecheck": "pnpm build && pnpm --recursive --sort --if-present typecheck && tsc -p tsconfig.tests.json",
+    "test": "pnpm build && vitest run --passWithNoTests && node --test services/laya-sidecar/node/*.test.mjs benchmarks/*.test.mjs evaluation/*.test.mjs",
+    "build": "pnpm --recursive --workspace-concurrency=1 --sort --if-present build",
+    "benchmark:tasks": "pnpm build && node benchmarks/runner.mjs",
+    "evaluate:decisions": "pnpm build && node evaluation/run.mjs",
+    "evaluate:calibration": "pnpm build && node evaluation/calibration.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.2",
+    "eslint": "^10.11.0",
+    "prettier": "^3.5.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^4.1.11"
+  }
+}

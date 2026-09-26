@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "provenance": "hand-labeled synthetic regression cases; no independent human adjudication",
+  "contextRelevance": {
+    "dataset": "step11_regression_plus_independent_synthetic_pruning_cases",
+    "count": 10,
+    "precision": 0.3333333333333333,
+    "recall": 0.8333333333333334,
+    "f1": 0.47619047619047616,
+    "mrr": 0.9166666666666666,
+    "ndcgAt3": 0.8613147192765458,
+    "top3Recall": 0.8333333333333334,
+    "falseNegativePruning": [
+      {
+        "id": "semantic implementation hidden behind neutral path",
+        "missed": ["src/internal/rotation.ts"]
+      },
+      {
+        "id": "multiple required files",
+        "missed": ["src/internal/rounding.ts"]
+      }
+    ],
+    "adversarialFalseNegativePruning": [
+      {
+        "id": "semantic implementation hidden behind neutral path",
+        "source": "adversarial",
+        "missed": ["src/internal/rotation.ts"]
+      },
+      {
+        "id": "multiple required files",
+        "source": "adversarial",
+        "missed": ["src/internal/rounding.ts"]
+      }
+    ],
+    "totalMissedRelevant": 2,
+    "calibratedProbabilities": {
+      "sampleCount": 0,
+      "brier": null,
+      "ece": null
+    }
+  },
+  "contextSufficiency": {
+    "dataset": "synthetic_sufficiency_regression",
+    "count": 8,
+    "safeToStop": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "tn": 6,
+      "precision": null,
+      "recall": 0,
+      "f1": null
+    },
+    "falsePositiveSufficient": [],
+    "uncertainCount": 3,
+    "unsafeStopCount": 0,
+    "observations": [
+      {
+        "id": "missing-implementation",
+        "gold": "insufficient",
+        "predicted": "insufficient",
+        "continueSearch": true
+      },
+      {
+        "id": "missing-test",
+        "gold": "insufficient",
+        "predicted": "insufficient",
+        "continueSearch": true
+      },
+      {
+        "id": "open-question",
+        "gold": "insufficient",
+        "predicted": "insufficient",
+        "continueSearch": true
+      },
+      {
+        "id": "no-required-ids",
+        "gold": "uncertain",
+        "predicted": "uncertain",
+        "continueSearch": true
+      },
+      {
+        "id": "complete-but-uncalibrated",
+        "gold": "sufficient",
+        "predicted": "uncertain",
+        "continueSearch": true
+      },
+      {
+        "id": "complete-config",
+        "gold": "sufficient",
+        "predicted": "uncertain",
+        "continueSearch": true
+      },
+      {
+        "id": "incomplete-distractor",
+        "gold": "insufficient",
+        "predicted": "insufficient",
+        "continueSearch": true
+      },
+      {
+        "id": "unknown-coverage",
+        "gold": "insufficient",
+        "predicted": "insufficient",
+        "continueSearch": true
+      }
+    ],
+    "calibratedProbabilities": {
+      "sampleCount": 0,
+      "brier": null,
+      "ece": null
+    }
+  },
+  "testRelevance": {
+    "dataset": "synthetic_test_selection_regression",
+    "count": 4,
+    "precision": 0.42857142857142855,
+    "recall": 1,
+    "f1": 0.6,
+    "mrr": 1,
+    "ndcgAt3": 1,
+    "top3Recall": 1,
+    "missedTests": [],
+    "fullCiRequiredEverywhere": true,
+    "calibratedProbabilities": {
+      "sampleCount": 0,
+      "brier": null,
+      "ece": null
+    }
+  },
+  "failureClassification": {
+    "dataset": "synthetic_failure_logs",
+    "count": 13,
+    "accuracy": 1,
+    "macroF1": 1,
+    "perClass": {
+      "assertion_failure": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "tn": 11,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "compile_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "dependency_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "environment_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "network_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "permission_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "rate_limit": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "syntax_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "timeout": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "type_error": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "unknown": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    "errors": [],
+    "calibratedProbabilities": {
+      "sampleCount": 0,
+      "brier": null,
+      "ece": null
+    }
+  },
+  "retry": {
+    "dataset": "synthetic_retry_safety_cases",
+    "count": 10,
+    "retryMetric": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "tn": 7,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "unsafeAutomaticRetries": [],
+    "errors": [],
+    "calibratedProbabilities": {
+      "sampleCount": 0,
+      "brier": null,
+      "ece": null
+    }
+  },
+  "calibrationEvidence": {
+    "status": "unavailable",
+    "reason": "No held-out scoped provider probabilities and labels; deterministic scores are not probabilities."
+  }
+}

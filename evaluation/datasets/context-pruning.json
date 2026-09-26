@@ -1,0 +1,73 @@
+{
+  "provenance": "hand-labeled adversarial synthetic cases, separate from the Step 11 ranking fixtures",
+  "cases": [
+    {
+      "name": "semantic implementation hidden behind neutral path",
+      "task": "refresh billing token",
+      "candidates": [
+        {
+          "path": "src/billing/token-refresh.ts",
+          "symbols": [{ "name": "refreshBillingToken", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.9,
+          "gold": 0
+        },
+        {
+          "path": "docs/billing/token-refresh.md",
+          "symbols": [],
+          "imports": [],
+          "retrievalScore": 0.85,
+          "gold": 0
+        },
+        {
+          "path": "tests/billing/token-refresh.test.ts",
+          "symbols": [{ "name": "refreshBillingTokenTest", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.8,
+          "gold": 0
+        },
+        {
+          "path": "src/internal/rotation.ts",
+          "symbols": [{ "name": "rotateCredential", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.1,
+          "gold": 3
+        }
+      ]
+    },
+    {
+      "name": "multiple required files",
+      "task": "repair checkout price calculation",
+      "candidates": [
+        {
+          "path": "src/checkout/price.ts",
+          "symbols": [{ "name": "calculatePrice", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.9,
+          "gold": 3
+        },
+        {
+          "path": "src/checkout/price-format.ts",
+          "symbols": [{ "name": "formatPrice", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.8,
+          "gold": 0
+        },
+        {
+          "path": "tests/checkout/price.test.ts",
+          "symbols": [{ "name": "priceTest", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.7,
+          "gold": 0
+        },
+        {
+          "path": "src/internal/rounding.ts",
+          "symbols": [{ "name": "bankersRound", "kind": "function" }],
+          "imports": [],
+          "retrievalScore": 0.1,
+          "gold": 3
+        }
+      ]
+    }
+  ]
+}

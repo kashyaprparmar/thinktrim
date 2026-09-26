@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "decision": "retain_provisional_safe_default",
+  "balancedDefault": false,
+  "profilesFinalized": false,
+  "sourceEvaluation": "evaluation/results/step30.json",
+  "sourceDiagnostic": "evaluation/results/step31-jev-diagnostic.json",
+  "evidence": {
+    "contextPruningMisses": 2,
+    "sufficiencyFalsePositiveStops": 0,
+    "providerObservations": 7,
+    "providerCorrect": 5,
+    "providerIncorrect": 2,
+    "brier": 0.23237142857142853,
+    "ece": 0.19714285714285706,
+    "synthetic": true
+  },
+  "scopes": [
+    {
+      "name": "context_relevance",
+      "category": "context_ranking",
+      "kind": "score",
+      "risk": "medium",
+      "backendId": null,
+      "modelVersion": null,
+      "sampleCount": 0,
+      "thresholds": {
+        "safe": {
+          "value": 0.98,
+          "status": "provisional",
+          "profile": "safe",
+          "kind": "score",
+          "category": "context_ranking",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "balanced": {
+          "value": 0.95,
+          "status": "provisional",
+          "profile": "balanced",
+          "kind": "score",
+          "category": "context_ranking",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "aggressive": {
+          "value": 0.9,
+          "status": "provisional",
+          "profile": "aggressive",
+          "kind": "score",
+          "category": "context_ranking",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        }
+      },
+      "readiness": "blocked",
+      "blockers": [
+        "thresholds_not_fitted_or_validated",
+        "fewer_than_200_scoped_provider_observations",
+        "no_independent_held_out_validation_cohort",
+        "context_false_negative_pruning_observed"
+      ]
+    },
+    {
+      "name": "context_sufficiency",
+      "category": "context_sufficiency",
+      "kind": "binary",
+      "risk": "high",
+      "backendId": "jev-openrouter",
+      "modelVersion": "typesafe/jev-1.13",
+      "sampleCount": 7,
+      "thresholds": {
+        "safe": {
+          "value": 0.995,
+          "status": "provisional",
+          "profile": "safe",
+          "kind": "binary",
+          "category": "context_sufficiency",
+          "risk": "high",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "balanced": {
+          "value": 0.98,
+          "status": "provisional",
+          "profile": "balanced",
+          "kind": "binary",
+          "category": "context_sufficiency",
+          "risk": "high",
+          "diagnosticAccepted": 1,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "aggressive": {
+          "value": 0.95,
+          "status": "provisional",
+          "profile": "aggressive",
+          "kind": "binary",
+          "category": "context_sufficiency",
+          "risk": "high",
+          "diagnosticAccepted": 1,
+          "diagnosticIncorrectAccepted": 0
+        }
+      },
+      "readiness": "blocked",
+      "blockers": [
+        "thresholds_not_fitted_or_validated",
+        "fewer_than_200_scoped_provider_observations",
+        "insufficient_positive_or_negative_labels",
+        "no_independent_held_out_validation_cohort",
+        "provider_errors_observed"
+      ]
+    },
+    {
+      "name": "test_relevance",
+      "category": "test_selection",
+      "kind": "score",
+      "risk": "medium",
+      "backendId": null,
+      "modelVersion": null,
+      "sampleCount": 0,
+      "thresholds": {
+        "safe": {
+          "value": 0.98,
+          "status": "provisional",
+          "profile": "safe",
+          "kind": "score",
+          "category": "test_selection",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "balanced": {
+          "value": 0.95,
+          "status": "provisional",
+          "profile": "balanced",
+          "kind": "score",
+          "category": "test_selection",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "aggressive": {
+          "value": 0.9,
+          "status": "provisional",
+          "profile": "aggressive",
+          "kind": "score",
+          "category": "test_selection",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        }
+      },
+      "readiness": "blocked",
+      "blockers": [
+        "thresholds_not_fitted_or_validated",
+        "fewer_than_200_scoped_provider_observations",
+        "no_independent_held_out_validation_cohort"
+      ]
+    },
+    {
+      "name": "failure_classification",
+      "category": "failure_classification",
+      "kind": "choice",
+      "risk": "medium",
+      "backendId": null,
+      "modelVersion": null,
+      "sampleCount": 0,
+      "thresholds": {
+        "safe": {
+          "value": 0.98,
+          "status": "provisional",
+          "profile": "safe",
+          "kind": "choice",
+          "category": "failure_classification",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "balanced": {
+          "value": 0.95,
+          "status": "provisional",
+          "profile": "balanced",
+          "kind": "choice",
+          "category": "failure_classification",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "aggressive": {
+          "value": 0.9,
+          "status": "provisional",
+          "profile": "aggressive",
+          "kind": "choice",
+          "category": "failure_classification",
+          "risk": "medium",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        }
+      },
+      "readiness": "blocked",
+      "blockers": [
+        "thresholds_not_fitted_or_validated",
+        "fewer_than_200_scoped_provider_observations",
+        "no_independent_held_out_validation_cohort"
+      ]
+    },
+    {
+      "name": "retry",
+      "category": "retry_gate",
+      "kind": "choice",
+      "risk": "high",
+      "backendId": null,
+      "modelVersion": null,
+      "sampleCount": 0,
+      "thresholds": {
+        "safe": {
+          "value": 0.995,
+          "status": "provisional",
+          "profile": "safe",
+          "kind": "choice",
+          "category": "retry_gate",
+          "risk": "high",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "balanced": {
+          "value": 0.98,
+          "status": "provisional",
+          "profile": "balanced",
+          "kind": "choice",
+          "category": "retry_gate",
+          "risk": "high",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        },
+        "aggressive": {
+          "value": 0.95,
+          "status": "provisional",
+          "profile": "aggressive",
+          "kind": "choice",
+          "category": "retry_gate",
+          "risk": "high",
+          "diagnosticAccepted": 0,
+          "diagnosticIncorrectAccepted": 0
+        }
+      },
+      "readiness": "blocked",
+      "blockers": [
+        "thresholds_not_fitted_or_validated",
+        "fewer_than_200_scoped_provider_observations",
+        "no_independent_held_out_validation_cohort"
+      ]
+    }
+  ],
+  "nextEvidence": "Collect independently labeled, held-out provider observations per backend/model/category/kind; validate confidence mapping and risk-specific operating points before updating any profile or default."
+}

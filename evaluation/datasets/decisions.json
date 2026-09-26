@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "provenance": "hand-labeled synthetic regression cases; no independent human adjudication",
+  "contextSufficiency": [
+    {
+      "id": "missing-implementation",
+      "task": "Fix session refresh",
+      "retrieved": ["test"],
+      "required": ["test", "implementation"],
+      "gold": "insufficient"
+    },
+    {
+      "id": "missing-test",
+      "task": "Fix session refresh",
+      "retrieved": ["implementation"],
+      "required": ["implementation", "test"],
+      "gold": "insufficient"
+    },
+    {
+      "id": "open-question",
+      "task": "Fix session refresh",
+      "retrieved": ["implementation", "test"],
+      "required": ["implementation", "test"],
+      "openQuestions": ["Which expiry rule applies?"],
+      "gold": "insufficient"
+    },
+    {
+      "id": "no-required-ids",
+      "task": "Fix session refresh",
+      "retrieved": ["implementation"],
+      "required": [],
+      "gold": "uncertain"
+    },
+    {
+      "id": "complete-but-uncalibrated",
+      "task": "Fix session refresh",
+      "retrieved": ["implementation", "test"],
+      "required": ["implementation", "test"],
+      "gold": "sufficient"
+    },
+    {
+      "id": "complete-config",
+      "task": "Set production port",
+      "retrieved": ["config", "test"],
+      "required": ["config", "test"],
+      "gold": "sufficient"
+    },
+    {
+      "id": "incomplete-distractor",
+      "task": "Fix session refresh",
+      "retrieved": ["readme", "test"],
+      "required": ["implementation", "test"],
+      "gold": "insufficient"
+    },
+    {
+      "id": "unknown-coverage",
+      "task": "Find cache owner",
+      "retrieved": [],
+      "required": ["cache"],
+      "gold": "insufficient"
+    }
+  ],
+  "testRelevance": [
+    {
+      "id": "direct-import",
+      "task": "Fix session refresh",
+      "changed": ["src/session.mjs"],
+      "gold": ["tests/session.test.mjs"]
+    },
+    {
+      "id": "other-source",
+      "task": "Fix discount",
+      "changed": ["src/discount.mjs"],
+      "gold": ["tests/discount.test.mjs"]
+    },
+    {
+      "id": "changed-test",
+      "task": "Update session test",
+      "changed": ["tests/session.test.mjs"],
+      "gold": ["tests/session.test.mjs"]
+    },
+    { "id": "no-changes", "task": "Find tests", "changed": [], "gold": [] }
+  ],
+  "failureClassification": [
+    { "id": "syntax", "output": "SyntaxError: Unexpected token }", "gold": "syntax_error" },
+    {
+      "id": "type",
+      "output": "error TS2322: Type string is not assignable to number",
+      "gold": "type_error"
+    },
+    {
+      "id": "compile",
+      "output": "compilation failed: undefined reference to main",
+      "gold": "compile_error"
+    },
+    {
+      "id": "assertion",
+      "output": "AssertionError: Expected: 2 Received: 3",
+      "gold": "assertion_failure"
+    },
+    { "id": "dependency", "output": "Cannot find module 'left-pad'", "gold": "dependency_error" },
+    {
+      "id": "environment",
+      "output": "missing environment variable DATABASE_URL",
+      "gold": "environment_error"
+    },
+    { "id": "permission", "output": "EACCES: permission denied", "gold": "permission_error" },
+    { "id": "network", "output": "ECONNRESET: socket hang up", "gold": "network_error" },
+    { "id": "timeout", "output": "operation timed out", "gold": "timeout" },
+    { "id": "rate", "output": "HTTP 429 Too Many Requests", "gold": "rate_limit" },
+    { "id": "tool", "output": "tool call failed: invalid tool response", "gold": "tool_error" },
+    { "id": "ambiguous", "output": "operation exited without diagnostics", "gold": "unknown" },
+    {
+      "id": "misleading-network-name",
+      "output": "AssertionError: Expected: network_error Received: syntax_error",
+      "gold": "assertion_failure"
+    }
+  ],
+  "retry": [
+    {
+      "id": "safe-network",
+      "input": {
+        "failureCategory": "network_error",
+        "attempt": 1,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "retry"
+    },
+    {
+      "id": "safe-timeout",
+      "input": {
+        "failureCategory": "timeout",
+        "attempt": 1,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "retry"
+    },
+    {
+      "id": "safe-rate-limit",
+      "input": {
+        "failureCategory": "rate_limit",
+        "attempt": 2,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "retry"
+    },
+    {
+      "id": "destructive",
+      "input": {
+        "failureCategory": "network_error",
+        "attempt": 1,
+        "operationType": "destructive",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "stop"
+    },
+    {
+      "id": "non-idempotent",
+      "input": {
+        "failureCategory": "timeout",
+        "attempt": 1,
+        "operationType": "write",
+        "idempotency": "non_idempotent",
+        "sideEffectRisk": "medium"
+      },
+      "gold": "stop"
+    },
+    {
+      "id": "high-risk",
+      "input": {
+        "failureCategory": "rate_limit",
+        "attempt": 1,
+        "operationType": "write",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "high"
+      },
+      "gold": "stop"
+    },
+    {
+      "id": "syntax",
+      "input": {
+        "failureCategory": "syntax_error",
+        "attempt": 1,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "stop"
+    },
+    {
+      "id": "attempt-limit",
+      "input": {
+        "failureCategory": "network_error",
+        "attempt": 3,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low"
+      },
+      "gold": "stop"
+    },
+    {
+      "id": "previous-unknown",
+      "input": {
+        "failureCategory": "timeout",
+        "attempt": 1,
+        "operationType": "read",
+        "idempotency": "idempotent",
+        "sideEffectRisk": "low",
+        "previousResult": { "status": "unknown" }
+      },
+      "gold": "escalate"
+    },
+    {
+      "id": "key-missing",
+      "input": {
+        "failureCategory": "network_error",
+        "attempt": 1,
+        "operationType": "write",
+        "idempotency": "idempotency_key",
+        "sideEffectRisk": "medium"
+      },
+      "gold": "stop"
+    }
+  ]
+}

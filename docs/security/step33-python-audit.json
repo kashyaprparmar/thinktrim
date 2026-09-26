@@ -1,0 +1,21 @@
+{
+  "dependencies": [
+    { "name": "colorama", "version": "0.4.6", "vulns": [] },
+    { "name": "iniconfig", "version": "2.3.0", "vulns": [] },
+    { "name": "librt", "version": "0.15.0", "vulns": [] },
+    { "name": "mypy", "version": "1.20.2", "vulns": [] },
+    { "name": "mypy-extensions", "version": "1.1.0", "vulns": [] },
+    { "name": "packaging", "version": "26.3", "vulns": [] },
+    { "name": "pathspec", "version": "1.1.1", "vulns": [] },
+    { "name": "pluggy", "version": "1.6.0", "vulns": [] },
+    { "name": "pygments", "version": "2.21.0", "vulns": [] },
+    { "name": "pytest", "version": "9.1.1", "vulns": [] },
+    { "name": "ruff", "version": "0.16.8", "vulns": [] },
+    {
+      "name": "thinktrim-laya-sidecar",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: thinktrim-laya-sidecar (0.1.0)"
+    },
+    { "name": "typing-extensions", "version": "4.16.0", "vulns": [] }
+  ],
+  "fixes": []
+}
