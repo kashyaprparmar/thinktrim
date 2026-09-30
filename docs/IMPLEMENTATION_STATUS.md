@@ -1,5 +1,6 @@
 ## Completed
 
+- Added the ThinkTrim launch graphic to the root README, including alt text describing deterministic context narrowing and optional Laya/Jev paths.
 - Public GitHub repository created and pushed: `https://github.com/kashyaprparmar/thinktrim`, branch `main`, initial commit `f255568edc1c8a3b484390b62a12226cfb753d1a`. Verified `origin/main` resolves to the same commit and GitHub reports `PUBLIC`.
 - Step 35 (INTEGRATE): added an explicit, opt-in Jev path to the MCP server. `thinktrim mcp --decision-backend jev --allow-remote-data task,paths,summaries` with `OPENROUTER_API_KEY` in the server environment sends the top 16 deterministic `thinktrim_rank` candidates' metadata to Jev in one score request. `ContextRankingPolicy` gained an `uncalibratedScores: "advisory"` mode: valid but uncalibrated backend scores are returned under `advisory` while ordering stays deterministic. MCP responses and `thinktrim_status` report backend state, egress permission, attempts, latency, usage, and fallback reason codes; the server writes a one-line mode notice to stderr at startup.
 - Jev/Codex model clarification: reviewed the user's live SalesBot transcript. Codex was GPT-6 Luna medium; the installed npm `thinktrim@0.1.0` MCP runtime reported `source: deterministic`, `requestCount: 0`, and `calibrated: false`. The current unreleased source now has the Step 35 opt-in Jev advisory path.
@@ -48,6 +49,7 @@
 
 ## Files Changed
 
+- Updated `README.md`; added `assets/social/thinktrim-linkedin-launch.png`; updated this status file.
 - Initial public commit: published 186 tracked project files (monorepo source, docs, tests, benchmarks, CI, and package scaffolding). Excluded the machine-local `.codex/config.toml` and ignored `.env.local`.
 - Repository metadata: added GitHub `origin` for `https://github.com/kashyaprparmar/thinktrim`; pushed `main`.
 - This status update records the public repository and verified remote commit.
@@ -98,6 +100,8 @@
 
 ## Important Decisions
 
+- Embedded the generated PNG from a repo-relative path so it renders on GitHub and remains usable when the repository is cloned.
+- The visual describes the intended workflow without numerical token-savings claims; actual savings still need benchmark evidence.
 - Created the requested repository as public `kashyaprparmar/thinktrim`; used `main` as the initial branch. The local Codex config contains machine-specific absolute paths and remains untracked. Credentials/local environment files were excluded.
 - Step 35: without a shipped calibrator, `ProfileConfidencePolicy` never accepts a Jev score. Jev scores are instead surfaced as a labeled, uncalibrated advisory and cannot reorder `ranked`. If a scoped calibrator is later injected and accepts, calibrated scores may reorder only the scored top 16.
 - Step 35: Jev is scoped to `thinktrim_rank` only. The sufficiency gate cannot accept an uncalibrated answer, so sending evidence there would be egress with no effect; gate and classify stay local. Egress requires `--allow-remote-data` to include every class the ranking request carries (`task`, `paths`, `summaries`). With a partial list, the server sends nothing and reports `egress_not_permitted`.
@@ -160,6 +164,7 @@
 
 ## Tests Run
 
+- No automated tests run; this is a README image/link change. Confirmed the source image exists and the README uses the committed asset path.
 - Pre-push validation: `pnpm lint`, `pnpm typecheck`, and `pnpm test` passed. Vitest: 125 passed, 1 credential-gated skip; Node test suite: 19 passed. Typecheck/test commands include workspace builds.
 - Publication checks: `git diff --cached --check` passed; staged diff scan found no npm/OpenRouter credential patterns. Verified public visibility, `main` branch, and matching local/remote commit SHA using GitHub CLI and `git ls-remote`.
 
@@ -214,6 +219,7 @@
 - Step 32: `pnpm install --frozen-lockfile`, `pnpm lint`, `pnpm typecheck`, and `pnpm test` passed after the Vitest 4.1.11 upgrade (108 Vitest passes, 19 Node passes, one credential-gated Jev test skipped). `pnpm audit` found no known npm vulnerabilities after remediation. Python sidecar `ruff`, `mypy`, and `pytest` passed; pytest reported 7 passes and one gated real-model skip. Focused malicious path, symlinked config/trace directory, Jev egress, keyed retry, and hostile Python import tests passed.
 
 ## Known Issues
+- The launch graphic is an image asset and is not optimized into a smaller WebP; the PNG is approximately 1.36 MB.
 - `.codex/config.toml` is intentionally left untracked because it contains local absolute paths. The working tree therefore reports `.codex/` as untracked; it was not published.
 
 - Step 35: a live Jev call through the MCP path has not been confirmed; only mocked HTTP was exercised. The change is unreleased: `thinktrim@0.1.0` on npm does not contain it, and the SalesBot config still launches 0.1.0. Publish a new version, then confirm `decisionBackend.advisory.backend` appears in a live `thinktrim_rank` response before claiming Jev works. Jev scores remain uncalibrated advisories; any value they add to ranking quality is unmeasured. Each Jev-enabled rank call adds one remote request (up to a 25 s deadline) to rank latency. The previously pasted OpenRouter key must still be rotated; do not reuse it for this verification.
@@ -254,7 +260,9 @@
 
 ## Next Step Context
 
-The repository is public at `https://github.com/kashyaprparmar/thinktrim`; `main` points to `f255568edc1c8a3b484390b62a12226cfb753d1a`. The user's local `.codex/config.toml` remains untracked and contains checkout-specific paths. Tests passed before the initial push. Continue with the unreleased Step 35/npm version caveat below.
+The README now embeds `assets/social/thinktrim-linkedin-launch.png`. Push the README, image, and status update to `origin/main` after confirming the commit is clean.
+
+The LinkedIn launch image is embedded in `README.md` and stored at `assets/social/thinktrim-linkedin-launch.png`; it is included in the current push. The repository is public at `https://github.com/kashyaprparmar/thinktrim`; earlier baseline commit was `f255568edc1c8a3b484390b62a12226cfb753d1a`. The user's local `.codex/config.toml` remains untracked and contains checkout-specific paths. Tests passed before the initial push. Continue with the unreleased Step 35/npm version caveat below.
 
 Step 35 added an opt-in Jev advisory path for MCP `thinktrim_rank` (`--decision-backend jev --allow-remote-data task,paths,summaries`, key only from `OPENROUTER_API_KEY`). It is in this source tree but unreleased: the published `thinktrim@0.1.0` and the SalesBot config still run deterministic-only. To use it: rotate the OpenRouter key, bump and publish the CLI version, reinstall globally, then hand-edit the host entry (Codex: append the args and add `env_vars = ["OPENROUTER_API_KEY"]`). Confirm a live call by checking for `decisionBackend.advisory.backend` in a `thinktrim_rank` response. Jev scores are uncalibrated hints and never reorder results; calibration work (`evaluation/`) is what could promote them.
 

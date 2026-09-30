@@ -4,6 +4,8 @@
 
 ThinkTrim is an open-source decision coprocessor for AI coding agents. It uses deterministic retrieval first, then bounded local or hosted inference where measured results justify it. It is designed for Claude Code, OpenAI Codex, Cursor, and VS Code; the first three work through MCP without the VS Code extension.
 
+![ThinkTrim flow: repository context narrowed before optional Laya local or Jev hosted decisions](assets/social/thinktrim-linkedin-launch.png)
+
 The repository contains the shared/core decision engine, provider adapters, repository indexer, ranking and decision policies, an MCP server, the universal `thinktrim` CLI, and a VS Code extension with context commands and a metrics sidebar. Product architecture and security decisions are documented in [`docs/`](docs/PROJECT_CONTEXT.md).
 
 ## Workspace
